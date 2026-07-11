@@ -8,8 +8,7 @@ This project simulates a small enterprise security monitoring environment. It co
 
 Goal: Understand how a SOC analyst uses a SIEM to detect and investigate suspicious behavior — brute-force login attempts, unauthorized account creation, and suspicious command execution.
 
-Architecture
-
+```
 ┌─────────────────┐        ┌─────────────────┐
 │  Ubuntu VM       │        │  Windows VM      │
 │  (Wazuh Agent)   │        │  (Wazuh Agent)   │
@@ -29,6 +28,7 @@ Architecture
               │   Wazuh Dashboard      │
               │   (Kibana-based UI)    │
               └───────────────────────┘
+```
 
 Tools used:
 
@@ -99,15 +99,14 @@ Simulated ActivityDetected?Rule TriggeredSeveritySSH brute force✅Custom rule 1
 
 Screenshots
 
+### Wazuh Login
+![Wazuh Login](screenshots/dashboard-login.jpeg)
 
-Add your screenshots here:
+### Dashboard Overview
+![Dashboard Overview](screenshots/dashboard-overview.jpeg)
 
 
 
-
-screenshots/dashboard-overview.png
-screenshots/failed-login-alert.png
-screenshots/agent-status.png
 
 
 Lessons Learned
