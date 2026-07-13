@@ -105,7 +105,8 @@ Screenshots
 ### Dashboard Overview
 ![Dashboard Overview](screenshots/dashboard-overview.jpeg)
 
-
+### Agent Status
+![Agent Status](screenshots/agents-status.jpg)
 
 
 
