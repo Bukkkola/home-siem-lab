@@ -95,7 +95,13 @@ Captured screenshots of triggered alerts and dashboard views (see /screenshots).
 
 Findings & Detections
 
-Simulated ActivityDetected?Rule TriggeredSeveritySSH brute force✅Custom rule 100010HighNew local account✅Wazuh default ruleMediumReverse shell attempt✅Wazuh default ruleHigh
+| Simulated Activity | Detected? | Rule Triggered | Severity |
+|---|---|---|---|
+| SSH brute force | ✅ | Custom rule 100010 | High |
+| New local account | ✅ | Wazuh default rule (T1136) | Medium |
+| Reverse shell attempt | ✅ | Wazuh default rule | High |
+| Sudo privilege escalation | ✅ | Wazuh default rule (T1548.003) | Medium |
+
 
 Screenshots
 
