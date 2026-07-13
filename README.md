@@ -109,6 +109,11 @@ Screenshots
 ![Agent Status](screenshots/agents-status.jpg)
 
 
+### Threat Hunting Overview
+![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
+
+### Threat Hunting — Simulated Events
+![Threat Hunting Events](screenshots/threat-hunting-events.jpg)
 
 Lessons Learned
 
