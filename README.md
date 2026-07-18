@@ -110,10 +110,28 @@ Screenshots
 ### Dashboard Overview
 ![Dashboard Overview](screenshots/dashboard-overview.jpeg)
 
-### Agent Status
+### Agent 1 Status (Ubuntu)
 ![Agent Status](screenshots/agents-status.jpg)
 
-### All Endpoints Connected
+## Ubuntu Endpoint Integration
+
+An Ubuntu 26.04 virtual machine was deployed and connected to the Wazuh SIEM manager running in Docker to provide Linux endpoint monitoring and security event collection.
+
+### Configuration
+
+- Endpoint: Ubuntu 26.04
+- Virtualization: UTM
+- Host platform: Apple Silicon Mac
+- Wazuh agent version: 4.9.0
+- Manager address: 192.x.x.x
+- Agent communication: TCP 1514
+- Agent enrollment: TCP 1515
+- Status: Active
+
+The Wazuh agent was installed on the Ubuntu endpoint, registered with the Wazuh manager, and configured to automatically start as a system service. The endpoint successfully communicates with the manager and sends security events, system inventory, and log data for centralized monitoring.
+
+
+### Agent 2 Status (Windows)
 ![All Agents](screenshots/agents-windows-status.jpg)
 
 ## Windows 11 Endpoint Integration
