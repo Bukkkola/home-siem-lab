@@ -121,12 +121,19 @@ Screenshots
 ### Threat Hunting — Simulated Events
 ![Threat Hunting Events](screenshots/threat-hunting-events.jpg)
 
-Lessons Learned
 
+## Lessons Learned
 
-Notes on false positives encountered and how thresholds were adjusted.
-Notes on any detection gaps (e.g., Windows Event Log visibility without Sysmon).
+Initially wrote a custom correlation rule (100010) keyed to Wazuh's default rule 5716 
+("authentication failed"), but testing with a nonexistent username triggered rule 5710 
+("invalid user") instead — a different failure path than expected. Diagnosed the mismatch 
+by inspecting the manager's rule definitions directly inside the Docker container, corrected 
+the `if_matched_sid` reference, and confirmed the rule fired correctly on retest (11 hits, 
+level 10, MITRE T1110).
 
+Also encountered a Wazuh agent/manager version mismatch (agent 4.14.6 vs manager 4.9.0) 
+that silently rejected registration — resolved by pinning the agent install to the matching 
+manager version.
 
 Next Steps
 
