@@ -1,7 +1,6 @@
 Home SIEM Lab: Threat Detection & Log Analysis
 
-A self-hosted Security Information and Event Management (SIEM) lab built to practice log collection, threat detection, alert tuning, and incident visualization — using free, open-source tools on a MacBook.
-
+A self-hosted Security Information and Event Management (SIEM) lab built to practice log collection, threat detection, alert tuning, and incident visualization — using free, open-source tools on a MacBook. Includes two live endpoints: an Ubuntu Server and a Windows 11 (ARM64) machine, both actively reporting to a single Wazuh manager.
 Overview
 
 This project simulates a small enterprise security monitoring environment. It covers the full detection lifecycle: from raw log collection on endpoints, to correlation and alerting in a SIEM, to dashboards summarizing detected activity.
