@@ -116,6 +116,24 @@ Screenshots
 ### All Endpoints Connected
 ![All Agents](screenshots/agents-windows-status.jpg)
 
+## Windows 11 Endpoint Integration
+
+A Windows 11 Pro ARM64 virtual machine was deployed in UTM on an Apple Silicon Mac and connected to the Wazuh SIEM manager running in Docker.
+
+### Configuration
+
+- Endpoint: Windows 11 Pro
+- Virtualization: UTM
+- Host platform: Apple Silicon Mac
+- Wazuh agent version: 4.9.0
+- Manager address: 192.x.x.x
+- Agent communication: TCP 1514
+- Agent enrollment: TCP 1515
+- Status: Active
+
+The endpoint was successfully enrolled using `agent-auth.exe`, and the Wazuh service was started on the Windows system.
+
+
 ### Threat Hunting Overview
 ![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
 
@@ -125,14 +143,14 @@ Screenshots
 
 ## Lessons Learned
 
-Initially wrote a custom correlation rule (100010) keyed to Wazuh's default rule 5716 
+- Initially wrote a custom correlation rule (100010) keyed to Wazuh's default rule 5716 
 ("authentication failed"), but testing with a nonexistent username triggered rule 5710 
 ("invalid user") instead — a different failure path than expected. Diagnosed the mismatch 
 by inspecting the manager's rule definitions directly inside the Docker container, corrected 
 the `if_matched_sid` reference, and confirmed the rule fired correctly on retest (11 hits, 
 level 10, MITRE T1110).
 
-Also encountered a Wazuh agent/manager version mismatch (agent 4.14.6 vs manager 4.9.0) 
+- I also encountered a Wazuh agent/manager version mismatch (agent 4.14.6 vs manager 4.9.0) 
 that silently rejected registration — resolved by pinning the agent install to the matching 
 manager version.
 
