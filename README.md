@@ -113,6 +113,8 @@ Screenshots
 ### Agent Status
 ![Agent Status](screenshots/agents-status.jpg)
 
+### All Endpoints Connected
+![All Agents](screenshots/agents-windows-status.jpg)
 
 ### Threat Hunting Overview
 ![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
