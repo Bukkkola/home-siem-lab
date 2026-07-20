@@ -180,7 +180,7 @@ Wazuh successfully detected the failed logon attempts and generated Windows Secu
 
 The test confirmed that the Windows endpoint is successfully forwarding Security Event Logs to Wazuh and that the default detection rules identify authentication failures.
 
-![Failed Windows Logon Detection](screenshots/Windows-failed-logon.png)
+![Failed Windows Logon Detection](screenshots/Windows-failed-logon.jpg)
 
 
 ### Threat Hunting Overview
