@@ -151,6 +151,37 @@ A Windows 11 Pro ARM64 virtual machine was deployed in UTM on an Apple Silicon M
 
 The endpoint was successfully enrolled using `agent-auth.exe`, and the Wazuh service was started on the Windows system.
 
+## Detection Test 1 – Failed Windows Logon
+
+### Objective
+
+Validate that the Wazuh SIEM detects failed Windows logon attempts from a monitored endpoint.
+
+### Procedure
+
+1. Locked the Windows 11 virtual machine.
+2. Entered an incorrect password five consecutive times.
+3. Logged in successfully using the correct password.
+4. Opened the Wazuh Threat Hunting dashboard.
+5. Filtered events for the Windows endpoint.
+
+### Results
+
+Wazuh successfully detected the failed logon attempts and generated Windows Security alerts.
+
+**Observed alerts**
+
+- Logon Failure
+- Windows Logon Success
+- Special privileges assigned
+- Non-service account logon
+
+### Outcome
+
+The test confirmed that the Windows endpoint is successfully forwarding Security Event Logs to Wazuh and that the default detection rules identify authentication failures.
+
+![Failed Windows Logon Detection](screenshots/windows-failed-logon.png)
+
 
 ### Threat Hunting Overview
 ![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
