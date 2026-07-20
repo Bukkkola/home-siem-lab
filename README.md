@@ -182,7 +182,50 @@ The test confirmed that the Windows endpoint is successfully forwarding Security
 
 ![Failed Windows Logon Detection](screenshots/Windows-failed-logon.jpg)
 
+## Detection Test 2 – PowerShell Activity
 
+### Objective
+
+Evaluate the default Windows logging configuration to determine whether PowerShell activity is detected and forwarded to the Wazuh SIEM.
+
+### Procedure
+
+1. Opened Windows PowerShell.
+2. Executed the following commands:
+
+```powershell
+Get-Process | Select-Object -First 5
+Get-Date
+```
+### PowerShell Commands Executed
+
+![PowerShell Commands](screenshots/powershell-command.jpg)
+
+### Threat Hunting Results
+
+![Default Windows Logging](screenshots/powershell-default-logging.jpg)
+3. Allowed the Wazuh agent time to forward events.
+4. Reviewed the **Threat Hunting** dashboard for PowerShell and process-related activity.
+
+### Results
+
+No dedicated PowerShell execution alerts or process creation events were generated after running the commands. The Threat Hunting dashboard continued to display standard Windows Security events, including:
+
+- Windows Logon Success
+- Service startup type changes
+- Software protection service events
+
+### Investigation Summary
+
+The test demonstrated that the default Windows logging configuration provides limited visibility into PowerShell execution. While the Windows endpoint continued to successfully forward security events to the Wazuh Manager, no detailed telemetry was available for the executed PowerShell commands.
+
+This behavior is expected on a default Windows installation and highlights the importance of enhanced telemetry solutions such as **Sysmon**, which provides detailed process creation, command-line logging, network connections, registry modifications, and other security-relevant events.
+
+### Outcome
+
+This test established a baseline for Windows event collection prior to installing Sysmon. A follow-up comparison will be performed after Sysmon is deployed to demonstrate the improvement in endpoint visibility and detection capabilities.
+
+![PowerShell Activity Test](screenshots/powershell-default-logging.jpg)
 ### Threat Hunting Overview
 ![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
 
