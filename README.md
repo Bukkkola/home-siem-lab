@@ -296,6 +296,26 @@ Wazuh successfully detected each event and generated the corresponding alerts.
 
 ![Windows File Integrity Monitoring](screenshots/windows-fim-events.jpg)
 
+## Windows Failed Logon Detection (Event ID 4625)
+
+### Objective
+Detect failed Windows authentication attempts using Windows Security Event ID 4625.
+
+### Attack Simulation
+- Attempted to sign in using an invalid username/password.
+- Windows generated Security Event ID 4625.
+- Wazuh ingested the event and generated a security alert.
+
+### Detection
+- Rule ID: **60122**
+- Rule: **Logon Failure - Unknown user**
+- MITRE ATT&CK: **T1531**
+
+### Result
+Wazuh successfully detected and logged the failed authentication attempt, demonstrating real-time monitoring of Windows Security events.
+
+![Windows Failed Logon Detection](screenshots/Windows-failed-logon-detection.jpg)
+
 ### Threat Hunting Overview
 ![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
 
