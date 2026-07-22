@@ -226,6 +226,50 @@ This behavior is expected on a default Windows installation and highlights the i
 This test established a baseline for Windows event collection prior to installing Sysmon. A follow-up comparison will be performed after Sysmon is deployed to demonstrate the improvement in endpoint visibility and detection capabilities.
 
 ![PowerShell Activity Test](screenshots/powershell-default-logging.jpg)
+
+## Installing Microsoft Sysmon
+
+Microsoft Sysmon was installed on the Windows 11 endpoint to provide enhanced telemetry, including process creation, registry modifications, network connections, and other security-relevant events.
+
+The following command was used to install Sysmon with a custom configuration:
+
+```powershell
+.\Sysmon64a.exe -accepteula -i .\sysmonconfig-export.xml
+```
+
+The installation completed successfully.
+
+![Sysmon Installation](screenshots/sysmon-installation.jpg)
+
+## Wazuh Agent Configuration
+
+The Windows Wazuh agent was configured to collect Microsoft Sysmon events by adding the following configuration to `ossec.conf`:
+
+```xml
+<localfile>
+  <location>Microsoft-Windows-Sysmon/Operational</location>
+  <log_format>eventchannel</log_format>
+</localfile>
+```
+
+After updating the configuration, the Wazuh agent service was restarted to begin forwarding Sysmon telemetry to the Wazuh Manager.
+
+![Wazuh Sysmon Configuration](screenshots/sysmon-wazuh-config.jpg)
+
+### Sysmon Threat Detection
+
+After integrating Sysmon with the Wazuh agent, the Windows endpoint (`WIN-EN530E6PUTB`) successfully forwarded Windows event logs to the Wazuh SIEM. The platform analyzed the incoming telemetry and generated security alerts mapped to the MITRE ATT&CK framework, demonstrating successful end-to-end log collection, threat detection, and event correlation.
+
+The following detections were observed:
+
+- **Rule 92205 (Level 9):** PowerShell Process Creation — **MITRE ATT&CK T1105**
+- **Rule 92031:** Discovery Activity — **MITRE ATT&CK T1087 (Account Discovery)**
+- **Rule 92039:** `net.exe` Account Discovery — **MITRE ATT&CK T1087**
+
+These alerts confirm that the Windows endpoint (`WIN-EN530E6PUTB`) was successfully generating Sysmon events, which were collected by the Wazuh agent, forwarded to the Wazuh Manager, and displayed in the Threat Hunting dashboard for analysis.
+
+![Sysmon Threat Detections](screenshots/sysmon-threat-detections.jpg)
+
 ### Threat Hunting Overview
 ![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
 
