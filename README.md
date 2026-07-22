@@ -314,7 +314,7 @@ Detect failed Windows authentication attempts using Windows Security Event ID 46
 ### Result
 Wazuh successfully detected and logged the failed authentication attempt, demonstrating real-time monitoring of Windows Security events.
 
-![Windows Failed Logon Detection](screenshots/Windows-failed-logon-detection.jpg)
+![Windows Failed Logon ](screenshots/Windows-failed-logon.jpg)
 
 ### Threat Hunting Overview
 ![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
