@@ -270,6 +270,32 @@ These alerts confirm that the Windows endpoint (`WIN-EN530E6PUTB`) was successfu
 
 ![Sysmon Threat Detections](screenshots/sysmon-threat-detections.jpg)
 
+## Windows File Integrity Monitoring (FIM)
+
+Configured Wazuh File Integrity Monitoring (FIM) on the Windows endpoint to monitor a custom directory (`C:\FIM-Test`) for unauthorized file changes in real time.
+
+```xml
+<directories check_all="yes" realtime="yes" recursion_level="0">C:\FIM-Test</directories>
+```
+
+### Validation
+
+The following file operations were performed:
+
+- Created `test.txt`
+- Modified `test.txt`
+- Deleted `test.txt`
+
+Wazuh successfully detected each event and generated the corresponding alerts.
+
+| Rule ID | Event |
+|---------:|-------|
+| 554 | File Created |
+| 550 | File Modified |
+| 553 | File Deleted |
+
+![Windows File Integrity Monitoring](screenshots/windows-fim-events.jpg)
+
 ### Threat Hunting Overview
 ![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
 
