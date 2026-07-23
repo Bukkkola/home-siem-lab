@@ -316,6 +316,34 @@ Wazuh successfully detected and logged the failed authentication attempt, demons
 
 ![Windows Failed Logon ](screenshots/Windows-failed-logon.jpg)
 
+## Ubuntu Sudo Monitoring
+
+### Objective
+Detect Linux privilege escalation attempts performed using `sudo`.
+
+### Attack Simulation
+
+Executed:
+
+```bash
+sudo apt update
+```
+
+### Detection
+
+| Rule ID | Description | Status |
+|---------|-------------|:------:|
+| **5402** | Successful sudo to ROOT execution | ✅ |
+| **5501** | PAM: Login session opened | ✅ |
+| **5502** | PAM: Login session closed | ✅ |
+| **MITRE ATT&CK** | **T1548.003 – Abuse Elevation Control Mechanism: Sudo** | ✅ |
+
+### Result
+
+Wazuh successfully detected the use of `sudo`, generating authentication and privilege escalation events. This demonstrates real-time monitoring of Linux administrative activity.
+
+![Ubuntu Sudo Monitoring](screenshots/ubuntu-sudo-monitoring.jpg)
+
 ### Threat Hunting Overview
 ![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
 
