@@ -37,6 +37,16 @@ UTM / VirtualBox for endpoint VMs
 Ubuntu Server (Linux endpoint)
 Windows 10/11 (Windows endpoint)
 
+### Skills Demonstrated
+
+- Wazuh SIEM Administration
+- Linux Security Monitoring
+- SSH Log Analysis
+- Threat Detection and Event Correlation
+- MITRE ATT&CK Mapping
+- SOC Incident Investigation
+- Credential Access Detection
+
 
 Setup Steps
 
@@ -150,6 +160,10 @@ A Windows 11 Pro ARM64 virtual machine was deployed in UTM on an Apple Silicon M
 - Status: Active
 
 The endpoint was successfully enrolled using `agent-auth.exe`, and the Wazuh service was started on the Windows system.
+
+### Threat Hunting Overview
+![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
+
 
 ## Detection Test 1 – Failed Windows Logon
 
@@ -344,11 +358,26 @@ Wazuh successfully detected the use of `sudo`, generating authentication and pri
 
 ![Ubuntu Sudo Monitoring](screenshots/ubuntu-sudo-monitoring.jpg)
 
-### Threat Hunting Overview
-![Threat Hunting Overview](screenshots/threat-hunting-overview.jpg)
+## SSH Brute Force Detection
 
-### Threat Hunting — Simulated Events
-![Threat Hunting Events](screenshots/threat-hunting-events.jpg)
+### Overview
+
+This lab demonstrates how Wazuh detects and correlates repeated SSH authentication failures to identify brute-force attacks against an Ubuntu server. By monitoring `/var/log/auth.log`, Wazuh collected failed login events, applied built-in detection rules, and generated a high-severity alert after identifying multiple failed authentication attempts from the same source.
+### Detection Results
+
+![SSH Brute Force Detection](screenshots/ssh-bruteforce-detection.jpg)
+
+### Detection Rules
+
+| Rule ID | Severity | Description | MITRE ATT&CK |
+|:--------:|:--------:|-------------|--------------|
+| **5710** | 5 | Detected an SSH login attempt using an invalid or unknown user account. | **T1110.001 – Password Guessing**<br>**T1021.004 – SSH** |
+| **5712** | 10 | Correlated multiple failed SSH authentication attempts and generated a brute-force attack alert. | **T1110 – Brute Force** |
+| **2502** | 10 | Detected repeated failed password authentication attempts from the system log. | **T1110 – Brute Force** |
+
+### Investigation Summary
+
+During the attack simulation, multiple failed SSH login attempts were made against the Ubuntu server using invalid credentials. Wazuh successfully ingested the authentication logs, detected the repeated failures, and generated a **Level 10** brute-force alert (**Rule 5712**). The detection was automatically mapped to the MITRE ATT&CK framework, helping classify the activity as a credential access attack.
 
 
 ## Lessons Learned
