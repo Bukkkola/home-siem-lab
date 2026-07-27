@@ -379,7 +379,33 @@ This lab demonstrates how Wazuh detects and correlates repeated SSH authenticati
 
 During the attack simulation, multiple failed SSH login attempts were made against the Ubuntu server using invalid credentials. Wazuh successfully ingested the authentication logs, detected the repeated failures, and generated a **Level 10** brute-force alert (**Rule 5712**). The detection was automatically mapped to the MITRE ATT&CK framework, helping classify the activity as a credential access attack.
 
+## 🛡️ Automated Response with Fail2Ban
 
+To enhance the lab beyond detection, **Fail2Ban** was integrated with the Ubuntu server to automatically block SSH brute-force attacks.
+
+### Configuration
+
+- **Service:** OpenSSH
+- **Maximum Retries:** 5
+- **Find Time:** 10 minutes
+- **Ban Time:** 1 hour
+
+### Workflow
+
+1. An attacker performed multiple failed SSH login attempts.
+2. Wazuh detected and generated alerts for the authentication failures.
+3. Fail2Ban monitored the SSH authentication logs.
+4. After five failed login attempts, the attacker's IP address (`192.168.64.1`) was automatically banned.
+
+### Evidence
+
+The screenshot below shows Fail2Ban detecting the failed login attempts and automatically banning the attacker's IP address.
+
+![Fail2Ban Automatic IP Ban](screenshots/fail2ban-image.jpg)
+
+### Result
+
+Automated detection and response successfully prevented additional SSH login attempts from the attacker, demonstrating both **threat detection (Wazuh)** and **automated containment (Fail2Ban)**.
 ## Lessons Learned
 
 - Initially wrote a custom correlation rule (100010) keyed to Wazuh's default rule 5716 
