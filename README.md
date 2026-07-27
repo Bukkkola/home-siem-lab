@@ -310,6 +310,53 @@ Wazuh successfully detected each event and generated the corresponding alerts.
 
 ![Windows File Integrity Monitoring](screenshots/windows-fim-events.jpg)
 
+## 📁 Ubuntu File Integrity Monitoring (FIM)
+
+### Objective
+
+Configure Wazuh File Integrity Monitoring (FIM) on an Ubuntu endpoint to detect unauthorized file changes in real time.
+
+### Environment
+
+- Wazuh Manager (Docker)
+- Ubuntu 24.04 Agent
+- Real-time Syscheck monitoring enabled
+
+### Configuration
+
+Added the following directory to the Wazuh agent configuration:
+
+```xml
+<directories check_all="yes" realtime="yes">/home/buks/FIM-Test</directories>
+```
+
+After updating the configuration, the Wazuh agent was restarted.
+
+### Test Procedure
+
+A monitored file was created, modified, and deleted within the configured directory.
+
+### Detection Results
+
+Wazuh successfully detected file integrity events, including:
+
+- File integrity checksum changed
+- File deleted
+
+### MITRE ATT&CK Mapping
+
+| MITRE ID | Technique |
+|----------|-----------|
+| T1565.001 | Stored Data Manipulation |
+| T1070.004 | File Deletion |
+| T1485 | Data Destruction |
+
+### Outcome
+
+This lab demonstrates Wazuh's ability to continuously monitor Linux endpoints for unauthorized file modifications and deletions, providing visibility into suspicious activity that may indicate compromise or malicious tampering.
+
+![Ubuntu File Integrity Monitoring](screenshots/ubuntu-fim.jpg)
+
 ## Windows Failed Logon Detection (Event ID 4625)
 
 ### Objective
