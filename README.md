@@ -115,7 +115,7 @@ Findings & Detections
 Screenshots
 
 ### Wazuh Login
-![Wazuh Login](screenshots/dashboard-login.png)
+![Wazuh Login](screenshots/dashboard-login.jpeg)
 
 ### Dashboard Overview
 ![Dashboard Overview](screenshots/dashboard-overview.jpeg)
